@@ -1,8 +1,7 @@
 
 function NameValidation(element) {
     const conditionOk01 = document.getElementById('ok01');
-    const name = form[element];
-    let elementValue = name.value;
+    let elementValue = form[element].value;
 
     if (elementValue.trim() === '') {
         RedValidate(conditionOk01);
@@ -15,8 +14,7 @@ function NameValidation(element) {
 
 function DestinyValidation(element) {
     const conditionOk02 = document.getElementById('ok02');
-    const destiny = form[element];
-    let elementValue = destiny.value;
+    let elementValue = form[element].value;
 
     if (elementValue.trim() === '') {
         RedValidate(conditionOk02);
@@ -30,11 +28,9 @@ function DestinyValidation(element) {
 function NumberValidation(number1, number2) {
     const conditionOk03 = document.getElementById('ok03');
     const conditionOk04 = document.getElementById('ok04');
-    const num1 = form[number1];
-    const num2 = form[number2]; 
 
-    let elementValue1 = num1.value;
-    let elementValue2 = num2.value;
+    let elementValue1 = form[number1].value;
+    let elementValue2 = form[number2].value; 
 
     if (elementValue1.trim() === '' || elementValue2.trim() === '') {
         RedValidate(conditionOk03);
