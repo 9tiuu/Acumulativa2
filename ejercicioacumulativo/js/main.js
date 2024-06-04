@@ -19,7 +19,7 @@ function DestinyValidation(element) {
     let elementValue = destiny.value;
 
     if (elementValue.trim() === '') {
-        RedValidate(conditionOk02)
+        RedValidate(conditionOk02);
 
     } else {
         GreenValidate(conditionOk02);
@@ -46,7 +46,7 @@ function NumberValidation(number1, number2) {
         GreenValidate(conditionOk04);
         return [elementValue1, elementValue2].toString();
         
-    } else { RedValidate(conditionOk04) }
+    } else { RedValidate(conditionOk04) };
 };
 
 function PasswordValidate(pass1, pass2) {
@@ -67,11 +67,44 @@ function PasswordValidate(pass1, pass2) {
         } else { RedValidate(conditionOk06) };
     };
 
-    if (formPassword.length > 2 && formPassword.length < 5) {
+    if (formPassword.length > 7 && formPassword.length < 25) {
         GreenValidate(conditionOk05);
         return formPassword;
 
     } else { RedValidate(conditionOk05) };
+};
+
+function CheckBoxValidation(conditionid) {
+    const ok07 = document.getElementById(conditionid);
+
+    const A = document.querySelector('[name="opcion_1"]');
+    const B = document.querySelector('[name="opcion_2"]');
+    const C = document.querySelector('[name="opcion_3"]');
+    const D = document.querySelector('[name="opcion_4"]');
+    const E = document.querySelector('[name="opcion_5"]');
+    const F = document.querySelector('[name="opcion_6"]');
+
+    const checkboxes = [A, B, C, D, E, F];
+    const checkboxes2 = []
+    let contador = 0
+
+    for (const checkbox of checkboxes) {
+        if (checkbox.checked) {
+            checkboxes2.push(checkbox.value);
+            contador++;
+        }
+    }
+
+    if(contador>=3){
+        ok07.classList.add('verde');
+        ok07.classList.remove('rojo');
+        return checkboxes2.toString();
+
+    }
+    else{
+        ok07.classList.add('rojo');
+        ok07.classList.remove('verde');
+    }
 };
 
 function GreenValidate(id) {
@@ -93,9 +126,10 @@ form.addEventListener('submit', function(formEvent) {
     const numbers = NumberValidation('numero1', 'numero2');
     const passwd = PasswordValidate('password1', 'password2');
     const destiny = DestinyValidation('destino');
+    const checkbox = CheckBoxValidation('ok07');
 
-    if (name && numbers && passwd && destiny) {
-        let formData = {nombre:name, numeros:numbers, contraseña:passwd, destino:destiny}
+    if (name && numbers && passwd && destiny && checkbox) {
+        let formData = {nombre:name, numeros:numbers, contraseña:passwd, destino:destiny, opciones:checkbox}
         console.log(formData);
     };
 });
